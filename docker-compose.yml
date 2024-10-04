@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: mongodb12
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: testdb  # Initialize the database with 'testdb'
+
+  app:
+    build: .
+    container_name: contacts
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:example@mongo:27017/testdb?authSource=admin
+    depends_on:
+      - mongo
