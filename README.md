@@ -13,9 +13,22 @@ This service functions as a reverse proxy and is responsible for:
 - Load Balancing
 
 It is built using **Spring Security** with **JWT Authentication**.
+| **Operation**        | **HTTP Method** | **Endpoint**       | **Description**                          |
+|----------------------|-----------------|--------------------|------------------------------------------|
+| Sign Up              | POST            | `/api/auth/signup` | Register a new user account.             |
+| Log In               | POST            | `/api/auth/login`  | Log in with valid credentials to get a JWT token. |
+
 
 ### 2. **Contact Service**
-This service provides an API for performing CRUD (Create, Read, Update, Delete) operations on a user's contact list.
+This service provides endpoints for performing CRUD (Create, Read, Update, Delete) operations on a user's contact list.
+
+| **Operation**        | **HTTP Method** | **Endpoint**               | **Description**                       |
+|----------------------|-----------------|----------------------------|---------------------------------------|
+| Create Contact       | POST            | `/contact/add`             | Add a new contact to the user's list. |
+| Retrieve Contacts    | GET             | `/contact/get`             | Retrieve all contacts of the user.    |
+| Update Contact       | PUT             | `/contact/{id}`            | Update an existing contact by ID.     |
+| Delete Contact       | DELETE          | `/contact/delete/{id}`     | Delete a contact by ID.               |
+
 
 ---
 
@@ -55,6 +68,8 @@ If the request contains an invalid token, the system will respond with an unauth
 ---
 
 ## Running the Application
+
+For easier deployment make sure to have docker installed. 
 
 To run this application, follow the steps below:
 1. Clone the repository.
