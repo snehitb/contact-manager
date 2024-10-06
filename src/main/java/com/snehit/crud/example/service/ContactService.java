@@ -15,23 +15,21 @@ import com.snehit.crud.example.repository.userRepo;
 public class ContactService {
     private final userRepo userRepository;
 
-
-    //looking database again and again would be costly for 
+    // looking database again and again would be costly for
     private user contactCache;
-
 
     public ContactService(userRepo userRepo) {
         this.userRepository = userRepo;
     }
 
     public List<contact> getUsersContact() {
-        if (contactCache == null)
+        if (contactCache == null || contactCache.getEmail() != getUsername())
             contactCache = setCache();
         return contactCache.getContacts();
     }
 
     public void setUserContact(contact contact) {
-        if (contactCache == null)
+        if (contactCache == null || contactCache.getEmail() != getUsername())
             contactCache = setCache();
         contactCache.getContacts().add(contact);
         userRepository.save(contactCache);
